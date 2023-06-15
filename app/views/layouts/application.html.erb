@@ -12,6 +12,16 @@
   </head>
 
   <body>
+  <header>
+    <%= render 'layouts/header.html.erb' %>
+  </header>
+
+  <main>
     <%= yield %>
+  </main>
+
+  <footer>
+    <%= render 'layouts/footer.html.erb' %>
+  </footer>
   </body>
 </html>
