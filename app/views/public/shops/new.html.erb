@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 mx-auto mt-5">
+    <h2>お店新規投稿フォーム</h2>
+      <%= form_with model: @new_shop, url: public_shops_path, method: :post  do |f| %>
+        <div class="field">
+           <%= f.label "店名" %><br>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+        <%= f.label "紹介文" %><br>
+          <%= f.text_area :introduction %>
+        </div>
+        <div class="field">
+          <%= f.label "所在地" %><br>
+          <%= f.text_field :address %>
+        </div>
+
+        <%= f.submit "投稿" %>
+
+      <% end %>
+    </div>
+  </div>
+</div>
