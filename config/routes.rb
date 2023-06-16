@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+
   namespace :public do
+    root to: 'homes#top'
+    get 'homes/about'
     devise_for :users
     resources :shops
   end

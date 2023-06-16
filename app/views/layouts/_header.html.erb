@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="header-left mt-3">
+      <h2>
+        <%= link_to public_root_path, class:"logo", id:"icon" do %>
+         Foodie<i class="fas fa-utensils fa-flip"></i>
+        <% end %>
+      </h2>
+    </div>
+
+    <div class="header-right">
+      <nav class="navbar">
+        <ul class="d-flex">
+          <li>
+            <%= link_to public_root_path, class:"header-btn" do %>
+              <i class="fas fa-home"></i> Top
+            <% end %>
+          </li>
+          <li>
+            <%= link_to public_root_path, class:"header-btn" do %>
+              <i class="fas fa-home"></i> Mypage
+            <% end %>
+          </li>
+          <li>
+            <%= link_to public_root_path, class:"header-btn" do %>
+              <i class="fas fa-home"></i> Shops
+            <% end %>
+          </li>
+          <li>
+            <%= link_to public_root_path, class:"header-btn" do %>
+              <i class="fas fa-home"></i> New Shop
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
