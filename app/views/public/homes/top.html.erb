@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h2 style="text-align: center;">Welcome to Foodie!!</h2>
+
+      <div class="slicker offset1">
+        <div>
+          <%= image_tag 'foods.jpg', size:'900x500', class:'ab-slick' %>
+        </div>
+        <div>
+          <%= image_tag 'foods2.jpg', size:'900x500', class:'ab-slick' %>
+        </div>
+        <div>
+          <%= image_tag 'foods3.jpg', size:'900x500', class:'ab-slick' %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    $('.slicker').slick({
+      accessibility: false,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      swipeToSlide: true,
+      fade: true,
+      arrows: false,
+    });
+  });
+</script>

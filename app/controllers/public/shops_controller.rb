@@ -6,11 +6,21 @@ class Public::ShopsController < ApplicationController
   def create
     @new_shop = Shop.new(shop_params)
     @new_shop.geocode
+    @new_shop.user_id = current_user.id
     if @new_shop.save
-      redirect_to public_shop_path(@new_shop)
+      redirect_to shop_path(@new_shop)
     else
       render :new
     end
+  end
+
+  def index
+    @shops = Shop.all
+  end
+
+  def search
+    @q = Shop.ransack(params[:q])
+    @shops
   end
 
   def show
@@ -18,9 +28,28 @@ class Public::ShopsController < ApplicationController
     gon.shop = @shop
   end
 
+  def edit
+    @shop = Shop.find(params[:id])
+  end
+
+  def update
+    @shop = Shop.find(params[:id])
+    if @shop.update(shop_params)
+      redirect_to shop_path(@shop)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @shop = Shop.find(params[:id])
+    @shop.destroy
+    redirect_to shops_path
+  end
+
   private
 
   def shop_params
-    params.require(:shop).permit(:name, :introduction, :address, :latitude, :longitude)
+    params.require(:shop).permit(:name, :introduction, :address, :latitude, :longitude, :star)
   end
 end

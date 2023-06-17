@@ -61,3 +61,5 @@ gem 'gon'
 gem 'geocoder'
 
 gem 'dotenv-rails'
+
+gem 'ransack'

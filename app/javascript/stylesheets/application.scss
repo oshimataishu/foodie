@@ -1,1 +1,37 @@
 @import '~bootstrap/scss/bootstrap';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body{
+  background-image: url('../../assets/images/bg.jpg');
+}
+
+
+
+.nav-item{
+  width: 165px;
+  text-align: center;
+  a{
+    color: #3b8585;
+  }
+}
+
+#icon {
+ color: #f17860;
+}
