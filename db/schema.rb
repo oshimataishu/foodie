@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2023_06_15_104603) do
   end
 
   create_table "shops", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.text "introduction"
     t.string "address"

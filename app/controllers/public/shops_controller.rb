@@ -6,6 +6,7 @@ class Public::ShopsController < ApplicationController
   def create
     @new_shop = Shop.new(shop_params)
     @new_shop.geocode
+    @new_shop.user_id = current_user.id
     if @new_shop.save
       redirect_to shop_path(@new_shop)
     else
@@ -33,6 +34,12 @@ class Public::ShopsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @shop = Shop.find(params[:id])
+    @shop.destroy
+    redirect_to shops_path
   end
 
   private

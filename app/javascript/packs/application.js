@@ -10,6 +10,8 @@ import "channels"
 import 'bootstrap';
 import '../stylesheets/application';
 
+require("./slick")
+
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()

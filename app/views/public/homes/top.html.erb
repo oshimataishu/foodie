@@ -2,22 +2,24 @@
 
 <div class="slicker offset1">
   <div>
-    <%= image_tag '', class:'ab-slick' %>
+    <%= image_tag 'foods.jpg', size:'900x500', class:'ab-slick' %>
   </div>
   <div>
-    <%= image_tag '', class:'ab-slick' %>
+    <%= image_tag 'foods2.jpg', size:'900x500', class:'ab-slick' %>
   </div>
   <div>
-    <%= image_tag '', class:'ab-slick' %>
+    <%= image_tag 'foods3.jpg', size:'900x500', class:'ab-slick' %>
   </div>
 </div>
 
 <script>
-  $(document).on('turbolinks:load', function(){
+  $(function(){
     $('.slicker').slick({
       autoplay: true,
       autoplaySpeed: 3000,
-      dots: true,
+      swipeToSlide: true,
+      fade: true,
+      arrows: false,
     });
   });
 </script>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'users/show'
+    get 'users/edit'
+    get 'users/update'
+  end
   devise_for :admins, controllers: {
     registrations: "admin/registrations",
     sessions: "admin/sessions"
