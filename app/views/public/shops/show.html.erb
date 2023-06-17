@@ -23,7 +23,7 @@
   </div>
 
   <div class="row">
-    <div>
+    <div class="flex-shrink-0">
       <h3>Google map <small>(<%= @shop.latitude %>, <%= @shop.longitude %>)</small></h3>
       <div id="map" style="height: 400px; width: 650px;">
         <script>
@@ -60,6 +60,12 @@
         </script>
 
 
+      </div>
+    </div>
+    <div class="flex-grow-1 ms-3 d-flex align-items-center" style="height: 400px">
+      <div>
+        <h4>Introduction</h4>
+        <p><%= @shop.introduction %></p>
       </div>
     </div>
   </div>

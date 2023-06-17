@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :users
     resources :shops do
       collection do
-        get 'seach'
+        get 'search'
       end
     end
   end

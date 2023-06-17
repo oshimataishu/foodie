@@ -8,4 +8,12 @@ class Shop < ApplicationRecord
   validates :introduction, presence: true
   validates :address, presence: true
   validates :star, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["address", "created_at", "id", "introduction", "latitude", "longitude", "name", "star", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["user"]
+  end
 end

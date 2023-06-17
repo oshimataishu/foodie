@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-inverse table-hover">
+        <thead>
+          <tr>
+            <th>店名</th>
+            <th>所在地</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shops.each do |shop| %>
+            <tr>
+              <td><%= shop.name %></td>
+              <td><%= shop.address %></td>
+              <td>
+                <div id="star_<%= shop.id %>"></div>
+                <script>
+                var elem = document.getElementById('star_<%= shop.id %>');
+
+                var opt = {
+                    starOn: "<%= asset_path('star-on.png') %>",
+                    starOff: "<%= asset_path('star-off.png') %>",
+                    score: "<%= shop.star %>",
+                    readOnly: true,
+                  };
+                  raty(elem,opt);
+                </script>
+              </td>
+              <td><%= link_to "編集", edit_shop_path(shop.id), class:"btn btn-info" %></td>
+              <td><%= link_to "削除", shop_path(shop.id), method: :delete, class:"btn btn-danger", data: { confirm: "Are you crazy?"} %></td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

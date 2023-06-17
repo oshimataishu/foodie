@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <label for="">Shop検索</label><br>
+      <%= search_form_for @q, url: search_shops_path do |f| %>
+        <%= f.search_field :name_or_address_cont %>
+        <%= f.submit '検索', class:"btn btn-outline-secondary" %>
+      <% end %>
+      <table class="table table-inverse table-hover">
+        <thead>
+          <tr>
+            <th>店名</th>
+            <th>所在地</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shops.each do |shop| %>
+            <tr>
+              <td><%= shop.name %></td>
+              <td><%= shop.address %></td>
+              <td><div id="star_<%= shop.id %>"></div></td>
+              <td><%= link_to "詳細へ", shop_path(shop.id), class:"btn btn-primary" %></td>
+              <script>
+                var elem = document.getElementById('star_<%= shop.id %>');
+                var opt = {
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  score: "<%= shop.star %>",
+                  readOnly: true,
+                }
+                raty(elem,opt);
+              </script>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="mx-auto px-auto">
+      <%= paginate @shops, window: 2 %>
+      </div>
+    </div>
+  </div>
+</div>

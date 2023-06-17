@@ -16,11 +16,12 @@ class Public::ShopsController < ApplicationController
 
   def index
     @shops = Shop.page params[:page]
+    @q = Shop.ransack(params[:q])
   end
 
   def search
     @q = Shop.ransack(params[:q])
-    @shops
+    @shops = @q.result.page params[:page]
   end
 
   def show
