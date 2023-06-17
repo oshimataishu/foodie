@@ -18,6 +18,11 @@ class Public::ShopsController < ApplicationController
     @shops = Shop.all
   end
 
+  def search
+    @q = Shop.ransack(params[:q])
+    @shops
+  end
+
   def show
     @shop = Shop.find(params[:id])
     gon.shop = @shop
@@ -45,6 +50,6 @@ class Public::ShopsController < ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:name, :introduction, :address, :latitude, :longitude)
+    params.require(:shop).permit(:name, :introduction, :address, :latitude, :longitude, :star)
   end
 end

@@ -1,60 +1,78 @@
-<div>
-  <table class="table table-inverse table-hover">
-    <thead>
-      <tr>
-        <th>店名</th>
-        <th>所在地</th>
-        <th colspan="2"></th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><%= @shop.name %></td>
-          <td><%= @shop.address %></td>
-          <td><%= link_to "編集", edit_shop_path(@shop.id), class:"btn btn-info" %></td>
-          <td><%= link_to "削除", shop_path(@shop.id), method: :delete, class:"btn btn-danger" %></td>
-        </tr>
-    </tbody>
-  </table>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-inverse table-hover">
+        <thead>
+          <tr>
+            <th>店名</th>
+            <th>所在地</th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><%= @shop.name %></td>
+              <td><%= @shop.address %></td>
+              <td><div id="star_<%= @shop.id %>"></div></td>
+              <td><%= link_to "編集", edit_shop_path(@shop.id), class:"btn btn-info" %></td>
+              <td><%= link_to "削除", shop_path(@shop.id), method: :delete, class:"btn btn-danger", data: { confirm: "Are you crazy?"} %></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <h3>Google map <small>(<%= @shop.latitude %>, <%= @shop.longitude %>)</small></h3>
+      <div id="map" style="height: 400px; width: 650px;">
+        <script>
+          let map;
+
+        function initMap() {
+          // geocoderを初期化
+          geocoder = new google.maps.Geocoder()
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
+            center: {
+              lat: gon.shop.latitude,
+              lng: gon.shop.longitude
+            },
+            // マップの倍率はお好みで
+            zoom: 18,
+            mapTypeId: 'hybrid'
+          });
+
+          marker = new google.maps.Marker({
+            // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
+            position: {
+              lat: gon.shop.latitude,
+              lng: gon.shop.longitude
+            },
+            map: map
+          });
+        }
+        </script>
+
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GMAP_API'] %>&callback=initMap">
+        </script>
 
 
-<div>
-  <h3>Google map <small>(<%= @shop.latitude %>, <%= @shop.longitude %>)</small></h3>
-  <div id="map" style="height: 500px; width: 50%;">
-    <script>
-      let map;
-
-    function initMap() {
-      // geocoderを初期化
-      geocoder = new google.maps.Geocoder()
-
-      map = new google.maps.Map(document.getElementById('map'), {
-        // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
-        center: {
-          lat: gon.shop.latitude,
-          lng: gon.shop.longitude
-        },
-        // マップの倍率はお好みで
-        zoom: 18,
-        mapTypeId: 'hybrid'
-      });
-
-      marker = new google.maps.Marker({
-        // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
-        position: {
-          lat: gon.shop.latitude,
-          lng: gon.shop.longitude
-        },
-        map: map
-      });
-    }
-    </script>
-
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GMAP_API'] %>&callback=initMap">
-    </script>
-
-
+      </div>
+    </div>
   </div>
 </div>
+
+<script>
+var elem = document.getElementById('star_<%= @shop.id %>');
+
+var opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    score: "<%= @shop.star %>",
+    readOnly: true,
+  };
+  raty(elem,opt);
+</script>

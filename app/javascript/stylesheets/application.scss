@@ -8,7 +8,10 @@
 
 a {
   text-decoration: none;
+}
 
+a:hover{
+  text-decoration: none;
 }
 
 li {
@@ -19,15 +22,16 @@ body{
   background-image: url('../../assets/images/bg.jpg');
 }
 
-main{
-}
 
-.slicker div{
-  height: 500px;
-  
-}
 
+.nav-item{
+  width: 165px;
+  text-align: center;
+  a{
+    color: #3b8585;
+  }
+}
 
 #icon {
- color: rgb(31, 191, 22);
+ color: #f17860;
 }

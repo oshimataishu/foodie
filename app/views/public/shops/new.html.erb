@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5 mx-auto mt-5">
+    <div class="col-md-8 mx-auto mt-5">
     <h2>お店新規投稿フォーム</h2>
       <%= form_with model: @new_shop, url: shops_path, method: :post  do |f| %>
         <div class="field">
@@ -15,6 +15,10 @@
           <%= f.label "所在地" %><br>
           <%= f.text_field :address %>
         </div>
+        <div class="field">
+          <%= f.label "評価" %>
+          <div id="post_raty" style="display: inline-block;"></div>
+        </div>
 
         <%= f.submit "投稿" %>
 
@@ -22,3 +26,14 @@
     </div>
   </div>
 </div>
+
+<script>
+var elem = document.getElementById('post_raty');
+var opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: "shop[star]",
+  };
+  raty(elem,opt);
+</script>

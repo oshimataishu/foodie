@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'users/edit'
     get 'users/update'
   end
+
   devise_for :admins, controllers: {
     registrations: "admin/registrations",
     sessions: "admin/sessions"
@@ -19,7 +20,11 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users
-    resources :shops
+    resources :shops do
+      collection do
+        get 'seach'
+      end
+    end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
