@@ -2,7 +2,7 @@
   <div class="row justify-content-around">
     <div class="header-left mt-3">
       <h2>
-        <%= link_to public_root_path, class:"logo", id:"icon" do %>
+        <%= link_to root_path, class:"logo", id:"icon" do %>
          Foodie<i class="fas fa-utensils fa-flip"></i>
         <% end %>
       </h2>
@@ -11,26 +11,40 @@
     <div class="header-right">
       <nav class="navbar">
         <ul class="d-flex">
-          <li>
-            <%= link_to public_root_path, class:"header-btn" do %>
-              <i class="fas fa-home"></i> Top
-            <% end %>
-          </li>
-          <li>
-            <%= link_to public_root_path, class:"header-btn" do %>
-              <i class="fas fa-home"></i> Mypage
-            <% end %>
-          </li>
-          <li>
-            <%= link_to public_root_path, class:"header-btn" do %>
-              <i class="fas fa-home"></i> Shops
-            <% end %>
-          </li>
-          <li>
-            <%= link_to public_root_path, class:"header-btn" do %>
-              <i class="fas fa-home"></i> New Shop
-            <% end %>
-          </li>
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to root_path, class:"header-btn" do %>
+                <i class="fas fa-home"></i> Top
+              <% end %>
+            </li>
+            <li>
+              <%= link_to user_path(current_user.id), class:"header-btn" do %>
+                <i class="fas fa-home"></i> Mypage
+              <% end %>
+            </li>
+            <li>
+              <%= link_to shops_path, class:"header-btn" do %>
+                <i class="fas fa-home"></i> Shops
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_shop_path, class:"header-btn" do %>
+                <i class="fas fa-home"></i> New Shop
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to new_user_session_path, class:"header-btn" do %>
+                <i class="fas fa-home"></i> Log in
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path, class:"header-btn" do %>
+                <i class="fas fa-home"></i> Sign up
+              <% end %>
+            </li>
+
+          <% end %>
         </ul>
       </nav>
     </div>

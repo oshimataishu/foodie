@@ -7,15 +7,32 @@ class Public::ShopsController < ApplicationController
     @new_shop = Shop.new(shop_params)
     @new_shop.geocode
     if @new_shop.save
-      redirect_to public_shop_path(@new_shop)
+      redirect_to shop_path(@new_shop)
     else
       render :new
     end
   end
 
+  def index
+    @shops = Shop.all
+  end
+
   def show
     @shop = Shop.find(params[:id])
     gon.shop = @shop
+  end
+
+  def edit
+    @shop = Shop.find(params[:id])
+  end
+
+  def update
+    @shop = Shop.find(params[:id])
+    if @shop.update(shop_params)
+      redirect_to shop_path(@shop)
+    else
+      render :edit
+    end
   end
 
   private

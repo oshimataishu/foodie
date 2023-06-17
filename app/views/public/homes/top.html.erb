@@ -1,0 +1,23 @@
+<h1>トップページです</h1>
+
+<div class="slicker offset1">
+  <div>
+    <%= image_tag '', class:'ab-slick' %>
+  </div>
+  <div>
+    <%= image_tag '', class:'ab-slick' %>
+  </div>
+  <div>
+    <%= image_tag '', class:'ab-slick' %>
+  </div>
+</div>
+
+<script>
+  $(document).on('turbolinks:load', function(){
+    $('.slicker').slick({
+      autoplay: true,
+      autoplaySpeed: 3000,
+      dots: true,
+    });
+  });
+</script>

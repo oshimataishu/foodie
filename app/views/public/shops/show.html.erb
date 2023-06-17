@@ -1,42 +1,60 @@
 <div>
-  <%= @shop.name %><br>
-  <%= @shop.latitude %><br>
-  <%= @shop.address %>
+  <table class="table table-inverse table-hover">
+    <thead>
+      <tr>
+        <th>店名</th>
+        <th>所在地</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= @shop.name %></td>
+          <td><%= @shop.address %></td>
+          <td><%= link_to "編集", edit_shop_path(@shop.id), class:"btn btn-info" %></td>
+          <td><%= link_to "削除", shop_path(@shop.id), method: :delete, class:"btn btn-danger" %></td>
+        </tr>
+    </tbody>
+  </table>
 </div>
 
-<div id="map" style="height: 500px; width: 50%;">
-  <script>
-    let map;
 
-  function initMap() {
-    // geocoderを初期化
-    geocoder = new google.maps.Geocoder()
+<div>
+  <h3>Google map <small>(<%= @shop.latitude %>, <%= @shop.longitude %>)</small></h3>
+  <div id="map" style="height: 500px; width: 50%;">
+    <script>
+      let map;
 
-    map = new google.maps.Map(document.getElementById('map'), {
-      // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
-      center: {
-        lat: gon.shop.latitude,
-        lng: gon.shop.longitude
-      },
-      // マップの倍率はお好みで
-      zoom: 18,
-      mapTypeId: 'hybrid'
-    });
+    function initMap() {
+      // geocoderを初期化
+      geocoder = new google.maps.Geocoder()
 
-    marker = new google.maps.Marker({
-      // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
-      position: {
-        lat: gon.shop.latitude,
-        lng: gon.shop.longitude
-      },
-      map: map
-    });
-  }
-  </script>
+      map = new google.maps.Map(document.getElementById('map'), {
+        // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
+        center: {
+          lat: gon.shop.latitude,
+          lng: gon.shop.longitude
+        },
+        // マップの倍率はお好みで
+        zoom: 18,
+        mapTypeId: 'hybrid'
+      });
 
-  <script async defer
-      src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GMAP_API'] %>&callback=initMap">
-  </script>
+      marker = new google.maps.Marker({
+        // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
+        position: {
+          lat: gon.shop.latitude,
+          lng: gon.shop.longitude
+        },
+        map: map
+      });
+    }
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GMAP_API'] %>&callback=initMap">
+    </script>
 
 
+  </div>
 </div>
