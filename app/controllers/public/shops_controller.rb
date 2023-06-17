@@ -15,7 +15,7 @@ class Public::ShopsController < ApplicationController
   end
 
   def index
-    @shops = Shop.all
+    @shops = Shop.page params[:page]
   end
 
   def search
