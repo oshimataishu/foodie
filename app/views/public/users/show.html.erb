@@ -1,7 +1,23 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
-      
+    <div class="col-md-5 mx-auto my-3">
+      <%= image_tag current_user.get_profile_image(100,100), style:"position: relative; left: 175px;" %>
+      <table class='table'>
+        <tr>
+          <th>name</th>
+          <td><%= current_user.last_name %> <%= current_user.first_name %></td>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <td><%= current_user.introduction %></td>
+        </tr>
+      </table>
+
+      <div class='row'>
+        <%= link_to edit_user_path(current_user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      </div>
     </div>
   </div>
 

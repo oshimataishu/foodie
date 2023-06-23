@@ -14,8 +14,10 @@
               <td><%= @shop.name %></td>
               <td><%= @shop.address %></td>
               <td><div id="star_<%= @shop.id %>"></div></td>
-              <td><%= link_to "編集", edit_shop_path(@shop.id), class:"btn btn-info" %></td>
-              <td><%= link_to "削除", shop_path(@shop.id), method: :delete, class:"btn btn-danger", data: { confirm: "Are you crazy?"} %></td>
+              <% if @shop.user == current_user %>
+                <td><%= link_to "編集", edit_shop_path(@shop.id), class:"btn btn-info" %></td>
+                <td><%= link_to "削除", shop_path(@shop.id), method: :delete, class:"btn btn-danger", data: { confirm: "Are you crazy?"} %></td>
+              <% end %>
             </tr>
         </tbody>
       </table>
@@ -62,7 +64,7 @@
 
       </div>
     </div>
-    <div class="flex-grow-1 ms-3 d-flex align-items-center" style="height: 400px">
+    <div class="flex-grow-1 ml-3 d-flex align-items-center" style="height: 400px">
       <div>
         <h4>Introduction</h4>
         <p><%= @shop.introduction %></p>

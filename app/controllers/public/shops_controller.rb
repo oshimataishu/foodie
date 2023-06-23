@@ -15,7 +15,7 @@ class Public::ShopsController < ApplicationController
   end
 
   def index
-    @shops = Shop.page params[:page]
+    @shops = Shop.page(params[:page])
     @q = Shop.ransack(params[:q])
   end
 
