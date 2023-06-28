@@ -1,5 +1,6 @@
 class Public::ShopsController < ApplicationController
   def new
+    @tags = Shop.tag_counts_on(:tags).most_used(20)
     @new_shop = Shop.new
   end
 
@@ -51,6 +52,6 @@ class Public::ShopsController < ApplicationController
   private
 
   def shop_params
-    params.require(:shop).permit(:name, :introduction, :address, :latitude, :longitude, :star)
+    params.require(:shop).permit(:name, :introduction, :address, :latitude, :longitude, :star, :tag_list)
   end
 end

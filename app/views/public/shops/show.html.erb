@@ -4,6 +4,16 @@
       <table class="table table-inverse table-hover">
         <thead>
           <tr>
+            <th colspan="4">
+              <% @shop.tag_list.each do |tag| %>
+                <div class="btn btn-success">
+                  <%= tag %>
+                </div>
+              <% end %>
+            </th>
+          </tr>
+          <tr>
+            <th></th>
             <th>店名</th>
             <th>所在地</th>
             <th colspan="4"></th>
@@ -11,6 +21,8 @@
         </thead>
         <tbody>
             <tr>
+              <td>
+              </td>
               <td><%= @shop.name %></td>
               <td><%= @shop.address %></td>
               <td><div id="star_<%= @shop.id %>"></div></td>

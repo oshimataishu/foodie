@@ -6,6 +6,16 @@
         <%= f.search_field :name_or_address_cont %>
         <%= f.submit '検索', class:"btn btn-outline-secondary" %>
       <% end %>
+
+      <h4>カテゴリ</h4>
+      <% @shops.each do |shop| %>
+        <% shop.tag_list.each do |tag| %>
+          <div class="btn btn-success">
+            <%= tag %>
+          </div>
+        <% end %>
+      <% end %>
+
       <table class="table table-inverse table-hover">
         <thead>
           <tr>

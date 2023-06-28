@@ -9,6 +9,8 @@ class Shop < ApplicationRecord
   validates :address, presence: true
   validates :star, presence: true
 
+  acts_as_taggable_on :tags
+
   def self.ransackable_attributes(auth_object = nil)
     ["address", "created_at", "id", "introduction", "latitude", "longitude", "name", "star", "updated_at", "user_id"]
   end

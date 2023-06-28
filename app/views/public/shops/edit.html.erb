@@ -16,6 +16,10 @@
           <%= f.text_field :address %>
         </div>
         <div class="field">
+          <%= f.label "カテゴリ" %><br>
+          <%= f.text_field :tag_list, value: @shop.tag_list.join(','), class:"form-control"  %>
+        </div>
+        <div class="field">
           <%= f.label "評価：" %>
           <div id="post_raty" style="display: inline-block"s></div>
         </div>

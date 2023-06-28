@@ -12,7 +12,7 @@ import 'bootstrap';
 import '../stylesheets/application';
 
 
-require("./slick")
+import("./slick")
 
 import Raty from "../raty.js"
 window.raty = function(elem,opt){
