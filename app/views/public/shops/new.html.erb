@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-8 mx-auto mt-5">
     <h2>お店新規投稿フォーム</h2>
+      <%= render 'layouts/error_messages', resource: @new_shop %>
       <%= form_with model: @new_shop do |f| %>
         <div class="field">
            <%= f.label "店名" %><br>

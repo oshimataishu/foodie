@@ -11,6 +11,7 @@ class Public::ShopsController < ApplicationController
     if @new_shop.save
       redirect_to shop_path(@new_shop)
     else
+      @tags = Shop.tag_counts_on(:tags).most_used(20)
       render :new
     end
   end
