@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
-  end
 
   devise_for :admins, controllers: {
     registrations: "admin/registrations",
@@ -15,11 +10,12 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
 
-  root to: 'public/homes#top'
-  get '/about' => 'public/homes#about'
 
   scope module: :public do
-    resources :users
+    root to: 'homes#top'
+    get 'about' => 'homes#about'
+
+    resource :users, only: [:show, :edit, :update, :index]
     resources :shops do
       collection do
         get 'search'

@@ -28,7 +28,7 @@
               <td><div id="star_<%= @shop.id %>"></div></td>
               <% if @shop.user == current_user %>
                 <td><%= link_to "編集", edit_shop_path(@shop.id), class:"btn btn-info" %></td>
-                <td><%= link_to "削除", shop_path(@shop.id), method: :delete, class:"btn btn-danger", data: { confirm: "Are you crazy?"} %></td>
+                <td><%= link_to "削除", shop_path(@shop.id), method: :delete, class:"btn btn-danger", data: { confirm: "本当に削除しますか？"} %></td>
               <% end %>
             </tr>
         </tbody>
