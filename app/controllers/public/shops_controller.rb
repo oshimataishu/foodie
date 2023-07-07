@@ -1,4 +1,6 @@
 class Public::ShopsController < ApplicationController
+  before_action :reject_guest_user
+
   def new
     @tags = Shop.tag_counts_on(:tags).most_used(20)
     @new_shop = Shop.new
@@ -54,5 +56,10 @@ class Public::ShopsController < ApplicationController
 
   def shop_params
     params.require(:shop).permit(:name, :introduction, :address, :latitude, :longitude, :star, :tag_list)
+  end
+
+  def reject_guest_user
+    if current_user.email == ENV['GUEST_USER_EMAIL']
+    end
   end
 end

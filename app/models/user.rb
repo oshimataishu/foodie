@@ -11,6 +11,14 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :first_name, presence: true
 
+  def self.guest
+    find_or_create_by!(email: ENV['GUEST_USER_EMAIL']) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.last_name = 'Guest'
+      user.first_name = 'User'
+    end
+  end
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
