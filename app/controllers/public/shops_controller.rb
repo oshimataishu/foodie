@@ -1,5 +1,5 @@
 class Public::ShopsController < ApplicationController
-  before_action :reject_guest_user
+  before_action :reject_guest_user, only: [:new, :create, :edit, :update]
 
   def new
     @tags = Shop.tag_counts_on(:tags).most_used(20)
@@ -60,6 +60,7 @@ class Public::ShopsController < ApplicationController
 
   def reject_guest_user
     if current_user.email == ENV['GUEST_USER_EMAIL']
+      redirect_to request.referer, notice: "ゲストユーザはご利用いただけません。"
     end
   end
 end

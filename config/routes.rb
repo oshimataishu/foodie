@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about' => 'homes#about'
 
-    resource :users, only: [:show, :edit, :update, :index]
+    resource :user, only: [:show, :edit, :update, :index]
     resources :shops do
       collection do
         get 'search'
